@@ -3,9 +3,11 @@ package com.gurzelai.reparationscalendar.controllers;
 import com.gurzelai.reparationscalendar.repositories.CustomerRepository;
 import com.gurzelai.reparationscalendar.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController //DemoController class as a request handler (a REST controller)
+@Controller //thymeleaf
+
 public class DemoController {
 
     @Autowired //inject the customerRepository bean
@@ -25,8 +27,14 @@ public class DemoController {
         return customerRepository.findAll();
     }
 
-    @GetMapping("/find/{id}") //maps the value in place of the id variable from the URL to the corresponding method parameter.
+    @GetMapping("/find/{id}")
+    //maps the value in place of the id variable from the URL to the corresponding method parameter.
     public Customer findCustomerById(@PathVariable Integer id) {
         return customerRepository.findCustomerById(id);
+    }
+
+    @RequestMapping("/home")
+    public String index() {
+        return "index";
     }
 }
