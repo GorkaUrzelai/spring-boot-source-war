@@ -1,9 +1,8 @@
 package com.gurzelai.reparationscalendar.controllers;
 
-import com.gurzelai.reparationscalendar.repositories.CustomerRepository;
 import com.gurzelai.reparationscalendar.model.Customer;
+import com.gurzelai.reparationscalendar.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 public class DemoController {
