@@ -5,6 +5,8 @@ import com.gurzelai.reparationscalendar.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/")
 public class DemoController {
 
     @Autowired //inject the customerRepository bean
@@ -28,10 +30,5 @@ public class DemoController {
     //maps the value in place of the id variable from the URL to the corresponding method parameter.
     public Customer findCustomerById(@PathVariable Integer id) {
         return customerRepository.findCustomerById(id);
-    }
-
-    @RequestMapping("/home")
-    public String index() {
-        return "index";
     }
 }
