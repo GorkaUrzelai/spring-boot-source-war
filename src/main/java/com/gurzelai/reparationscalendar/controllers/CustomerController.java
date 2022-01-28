@@ -6,20 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
-public class DemoController {
+@RequestMapping("/customer")
+public class CustomerController {
 
     @Autowired //inject the customerRepository bean
     private CustomerRepository customerRepository;
-
-    @PostMapping("/add") //addCustomer() method to POST requests for /add
-    public String addCustomer(@RequestParam String first, @RequestParam String last) {
-        Customer customer = new Customer();
-        customer.setFirstName(first);
-        customer.setLastName(last);
-        customerRepository.save(customer);
-        return "Added new customer to repo!";
-    }
 
     @GetMapping("/list") //getCustomers() method to GET requests for /list
     public Iterable<Customer> getCustomers() {
@@ -31,4 +22,22 @@ public class DemoController {
     public Customer findCustomerById(@PathVariable Integer id) {
         return customerRepository.findCustomerById(id);
     }
+
+    @PostMapping("/add") //addCustomer() method to POST requests for /add
+    public String addCustomer(@RequestParam String first, @RequestParam String last) {
+        Customer customer = new Customer();
+        customer.setFirstName(first);
+        customer.setLastName(last);
+        customerRepository.save(customer);
+        return "Added new customer to repo!";
+    }
+
+    public void addC(@RequestParam String first, @RequestParam String last) {
+        Customer customer = new Customer();
+        customer.setFirstName(first);
+        customer.setLastName(last);
+        customerRepository.save(customer);
+    }
+
+
 }
