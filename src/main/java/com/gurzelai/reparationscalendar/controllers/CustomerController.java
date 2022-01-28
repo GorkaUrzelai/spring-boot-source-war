@@ -31,13 +31,4 @@ public class CustomerController {
         customerRepository.save(customer);
         return "Added new customer to repo!";
     }
-
-    public void addC(@RequestParam String first, @RequestParam String last) {
-        Customer customer = new Customer();
-        customer.setFirstName(first);
-        customer.setLastName(last);
-        customerRepository.save(customer);
-    }
-
-
 }
