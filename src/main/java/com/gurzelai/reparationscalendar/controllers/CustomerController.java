@@ -1,5 +1,6 @@
 package com.gurzelai.reparationscalendar.controllers;
 
+import com.gurzelai.reparationscalendar.ReparationscalendarApplication;
 import com.gurzelai.reparationscalendar.model.Customer;
 import com.gurzelai.reparationscalendar.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class CustomerController {
 
     @PostMapping("/add") //addCustomer() method to POST requests for /add
     public String addCustomer(@RequestParam String first, @RequestParam String last) {
+        ReparationscalendarApplication.log.info("-----has entrado en metodo addCustomer-----");
         Customer customer = new Customer();
         customer.setFirstName(first);
         customer.setLastName(last);

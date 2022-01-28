@@ -1,11 +1,13 @@
 package com.gurzelai.reparationscalendar.repositories;
 
 import com.gurzelai.reparationscalendar.model.Customer;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface CustomerRepository extends CrudRepository<Customer, Integer> { //integer por el id
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Integer> { //integer por el id
 
     Customer findCustomerById(Integer id);
 

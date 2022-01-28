@@ -1,9 +1,6 @@
 package com.gurzelai.reparationscalendar.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 //indicates that the Customer class is a JPA entity that should translate into the corresponding table in the database
@@ -13,7 +10,9 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column
     private String firstName;
+    @Column
     private String lastName;
 
     public Customer() {

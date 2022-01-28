@@ -14,13 +14,13 @@ import java.util.Optional;
 @SpringBootApplication
 public class ReparationscalendarApplication {
 
-    private static final Logger log = LoggerFactory.getLogger(ReparationscalendarApplication.class);
+    public static final Logger log = LoggerFactory.getLogger(ReparationscalendarApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(ReparationscalendarApplication.class, args);
     }
 
-
+/*
     @Bean
     public CommandLineRunner demo(CustomerRepository repository) {
         return (args) -> {
@@ -57,5 +57,5 @@ public class ReparationscalendarApplication {
             });
             log.info("");
         };
-    }
+    }*/
 }
