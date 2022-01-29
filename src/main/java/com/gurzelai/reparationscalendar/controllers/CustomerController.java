@@ -6,6 +6,8 @@ import com.gurzelai.reparationscalendar.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -25,11 +27,12 @@ public class CustomerController {
     }
 
     @PostMapping("/add") //addCustomer() method to POST requests for /add
-    public String addCustomer(@RequestParam String first, @RequestParam String last) {
+    public String addCustomer(HttpServletRequest request) {
         ReparationscalendarApplication.log.info("-----has entrado en metodo addCustomer-----");
         Customer customer = new Customer();
-        customer.setFirstName(first);
-        customer.setLastName(last);
+        customer.setFirstName(request.getParameter("first"));
+        customer.setLastName(request.getParameter("last"));
+        ReparationscalendarApplication.log.info("Added customer "+ customer.toString());
         customerRepository.save(customer);
         return "Added new customer to repo!";
     }
