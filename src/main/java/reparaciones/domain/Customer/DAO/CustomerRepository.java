@@ -1,16 +1,20 @@
-package com.gurzelai.reparationscalendar.repositories;
+package reparaciones.domain.Customer.DAO;
 
-import com.gurzelai.reparationscalendar.model.Customer;
+import reparaciones.domain.Customer.Model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> { //integer por el id
 
     Customer findCustomerById(Integer id);
 
-    List<Customer> findByLastName(String lastName);
+    public Optional<Customer> findByUsername(String username);
 
+    List<Customer> findByEmail(String email);
+
+    public Optional<Customer> findByFirstName(String firstName);
 }

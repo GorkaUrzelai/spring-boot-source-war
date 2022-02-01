@@ -1,33 +1,22 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>You first Spring application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <div th:replace="/includes/header_common_links"></div> <!-- todos los css -->
 
+    <style>
+        body {
+            margin-top: 300px;
+        }
+    </style>
 </head>
 <body>
 <header>
     <nav th:replace="/includes/header :: header_fragment"></nav>
 </header>
-<main>
-    <form action="customer/add" method="POST">
-        <p>Let's add a customer.</p>
-        <div>
-            <label for="firstName">First name:</label>
-            <input name="first" id="firstName" value="Homer">
-        </div>
-        <div>
-            <label for="lastName">Last name:</label>
-            <input name="last" id="lastName" value="Simpson">
-        </div>
-        <div>
-            <button>Add customer</button>
-        </div>
-    </form>
-    <form action="customer/list" method="GET">
-        <button>List customers</button>
-    </form>
+<main class="text-center">
+    <button><a th:href="@{/register}">REGISTRARSE</a></button>
 </main>
 <footer th:replace="/includes/footer :: footer"></footer>
 <div th:replace="/includes/footer_common_links"></div> <!-- todos los js -->

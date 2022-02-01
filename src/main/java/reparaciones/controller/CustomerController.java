@@ -1,8 +1,8 @@
-package com.gurzelai.reparationscalendar.controllers;
+package reparaciones.controller;
 
-import com.gurzelai.reparationscalendar.ReparationscalendarApplication;
-import com.gurzelai.reparationscalendar.model.Customer;
-import com.gurzelai.reparationscalendar.repositories.CustomerRepository;
+import reparaciones.ReparationscalendarApplication;
+import reparaciones.domain.Customer.Model.Customer;
+import reparaciones.domain.Customer.DAO.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class CustomerController {
         ReparationscalendarApplication.log.info("-----has entrado en metodo addCustomer-----");
         Customer customer = new Customer();
         customer.setFirstName(request.getParameter("first"));
-        customer.setLastName(request.getParameter("last"));
+        customer.setEmail(request.getParameter("last"));
         ReparationscalendarApplication.log.info("Added customer "+ customer.toString());
         customerRepository.save(customer);
         return "Added new customer to repo!";
