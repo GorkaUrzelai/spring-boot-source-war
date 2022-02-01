@@ -12,26 +12,39 @@ import reparaciones.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    //Necesario para evitar que la seguridad se aplique a los resources
+    //Como los css, imagenes y javascripts
+    String[] resources = new String[]{
+            "/include/**", "/css/**", "/icons/**", "/img/**", "/js/**", "/layer/**", "/", "register"
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/*").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(resources).permitAll()
+                .antMatchers("/", "/index").permitAll()
+                .antMatchers("/*").access("hasRole('ADMIN')")
+                .antMatchers("/user*").access("hasRole('USER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/home")
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/menu")
                 .failureUrl("/login?error=true")
-                .usernameParameter("firstName")
-                .passwordParameter("password");
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .and()
+                .logout()
+                .permitAll()
+                .logoutSuccessUrl("/login?logout");
     }
 
-    public  static BCryptPasswordEncoder bCryptPasswordEncoder;
+    public static BCryptPasswordEncoder bCryptPasswordEncoder;
+
     //Crea el encriptador de contraseñas
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {

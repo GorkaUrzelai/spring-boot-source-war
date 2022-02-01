@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Mi primer Login</title>
+    <title>Login</title>
     <style>
         body {
             margin-top: 300px;
@@ -9,29 +9,37 @@
     </style>
 </head>
 <body>
-<div class="modal-dialog text-center">
-    <div class="col-sm-8 main-section">
-        <div class="modal-content">
-            <form class="col-12" th:action="@{/login}" method="post">
-                <div class="form-group" id="coche-group">
-                    <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"/>
+
+<header>
+    <nav th:replace="/includes/header :: header_fragment"></nav>
+</header>
+<main class="text-center">
+    <div class="modal-dialog">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <form class="col-12" th:action="@{/login}" method="post">
+                    <div class="form-group" id="coche-group">
+                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"/>
+                    </div>
+                    <div class="form-group" id="contrasena-group">
+                        <input type="password" class="form-control" placeholder="Contrasena" name="password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
+                </form>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                    Usuario o contraseña incorrecta.
                 </div>
-                <div class="form-group" id="contrasena-group">
-                    <input type="password" class="form-control" placeholder="Contrasena" name="password"/>
+                <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                    Has cerrado sesion.
                 </div>
-                <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
-            </form>
-            <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                Invalid username and password.
+                <form th:action="@{/register}" method="get">
+                    <input type="submit" value="Registrarse"/>
+                </form>
             </div>
-            <div th:if="${param.logout}" class="alert alert-success" role="alert">
-                You have been logged out.
-            </div>
-            <form th:action="@{/register}" method="get">
-                <input type="submit" value="Registrarse"/>
-            </form>
         </div>
     </div>
-</div>
+</main>
+<footer th:replace="/includes/footer :: footer"></footer>
+<div th:replace="/includes/footer_common_links"></div> <!-- todos los js -->
 </body>
 </html>

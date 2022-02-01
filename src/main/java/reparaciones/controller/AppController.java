@@ -39,6 +39,11 @@ public class AppController {
         model.addAttribute("customer", new Customer());
         return "register";
     }
+    @GetMapping("/login")
+    public String login(Model model) {
+
+        return "login";
+    }
 
     @PostMapping("/process_register")
     public String processRegisterCustomer(Model model, Customer customerApp,
@@ -92,7 +97,7 @@ public class AppController {
     public static Set<Authority> getAuthority(CustomerRepository userRepo, String auth) {
 
 
-        Optional<Customer> user_customer_opt = userRepo.findByUsername("gorka");
+        Optional<Customer> user_customer_opt = userRepo.findByUsername("admin");
         if (user_customer_opt.isPresent()) {
             Customer customer_customer = user_customer_opt.get();
         }
