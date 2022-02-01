@@ -28,7 +28,7 @@ public class AppController {
     @Autowired //inject the customerRepository bean
     private CustomerRepository customerRepository;
 
-    @GetMapping({"/home"})
+    @GetMapping({"/","/home"})
     public String home() {
         return "index";
     }
