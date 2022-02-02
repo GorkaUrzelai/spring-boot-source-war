@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reparaciones.domain.Authority.Authority;
 import reparaciones.domain.Customer.DAO.CustomerRepository;
 import reparaciones.domain.Customer.Model.Customer;
@@ -20,14 +21,14 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    CustomerRepository userRepository;
+    CustomerRepository customerRepository;
 	
     @Override
+    @Transactional
      public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
      //Buscar el usuario con el repositorio y si no existe lanzar una exepcion
-     Customer appCustomer =
-                 userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
+     Customer appCustomer =  customerRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 		
     //Mapear nuestra lista de Authority con la de spring security 
     List grantList = new ArrayList();

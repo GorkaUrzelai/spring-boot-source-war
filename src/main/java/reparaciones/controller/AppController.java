@@ -28,9 +28,14 @@ public class AppController {
     @Autowired //inject the customerRepository bean
     private CustomerRepository customerRepository;
 
-    @GetMapping({"/", "/home", "/login"})
+    @GetMapping({"/", "/login"})
     public String login() {
         return "login";
+    }
+
+    @GetMapping({"/home"})
+    public String index() {
+        return "index";
     }
 
     @GetMapping("/register")

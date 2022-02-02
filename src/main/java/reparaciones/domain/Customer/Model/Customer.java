@@ -3,6 +3,7 @@ package reparaciones.domain.Customer.Model;
 import reparaciones.domain.Authority.Authority;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -30,6 +31,9 @@ public class Customer {
 
     @Column
     private boolean enabled;
+
+    @Column
+    LocalDateTime updatedOn;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "customer_id"),
@@ -81,6 +85,11 @@ public class Customer {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @PreUpdate
+    public void updationSpot() {
+        this.updatedOn = LocalDateTime.now();
     }
 
     public Set<Authority> getAuthority() {
