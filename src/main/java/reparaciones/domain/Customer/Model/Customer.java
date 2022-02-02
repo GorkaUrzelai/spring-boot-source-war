@@ -10,11 +10,8 @@ import java.util.Set;
 @Table(name = "customers")
 public class Customer {
 
-    //Con GenerationType.IDENTITY cuando vaya
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    /*@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_generator")
-    @SequenceGenerator(name = "customer_generator", sequenceName = "customer_seq", initialValue = 10)*/
     private Integer id;
 
     @Column
