@@ -45,6 +45,10 @@ public class AppController {
         return "register";
     }
 
+    @GetMapping({"/coches"})
+    public String coches() {
+        return "coches";
+    }
 
     @PostMapping("/process_register")
     public String processRegisterCustomer(Model model, Customer customerApp,
