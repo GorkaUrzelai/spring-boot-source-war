@@ -28,9 +28,9 @@ public class AppController {
     @Autowired //inject the customerRepository bean
     private CustomerRepository customerRepository;
 
-    @GetMapping({"/", "/home"})
-    public String home() {
-        return "index";
+    @GetMapping({"/", "/home", "/login"})
+    public String login() {
+        return "login";
     }
 
     @GetMapping("/register")
@@ -53,7 +53,7 @@ public class AppController {
             if (existeUsuarioConEseUsername(customerDB)) ReparationscalendarApplication.log.warn("usuario repetido");
             if (bindingResult.hasErrors()) ReparationscalendarApplication.log.warn("ha fallado el registro");
 
-            return "index";
+            return "login";
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(customerDB.getPassword());
@@ -68,7 +68,7 @@ public class AppController {
         customerRepository.save(customerApp);
         error = "registro correcto";
         model.addAttribute("error", error);
-        return "index";
+        return "login";
     }
 
     @CacheEvict(value = "customers", beforeInvocation = true)

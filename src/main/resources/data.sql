@@ -16,3 +16,7 @@ INSERT INTO authorities_users (customer_id, authority_id)
 VALUES (1, 1);
 INSERT INTO authorities_users (customer_id, authority_id)
 values (2, 2);
+
+insert into tipo_piezas(tipo_piezaid, nombre) value (1, 'Freno de disco');
+insert into tipo_piezas(tipo_piezaid, nombre) value (2, 'Neumatico');
+insert into tipo_piezas(tipo_piezaid, nombre) value (3, 'Luz');
