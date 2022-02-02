@@ -28,7 +28,7 @@ public class AppController {
     @Autowired //inject the customerRepository bean
     private CustomerRepository customerRepository;
 
-    @GetMapping({"/","/home"})
+    @GetMapping({"/", "/home"})
     public String home() {
         return "index";
     }
@@ -39,11 +39,7 @@ public class AppController {
         model.addAttribute("customer", new Customer());
         return "register";
     }
-    @GetMapping("/login")
-    public String login(Model model) {
 
-        return "login";
-    }
 
     @PostMapping("/process_register")
     public String processRegisterCustomer(Model model, Customer customerApp,
@@ -51,9 +47,12 @@ public class AppController {
                                           BindingResult bindingResult) {
         error = null;
         if (bindingResult.hasErrors() || existeUsuarioConEseUsername(customerDB)) {
-            error = "ha fallado el registro";
+            if (existeUsuarioConEseUsername(customerDB)) error = "usuario duplicado";
+            if (bindingResult.hasErrors()) error = "error creando el usuario";
             model.addAttribute("error", error);
-            ReparationscalendarApplication.log.warn("ha fallado el registro");
+            if (existeUsuarioConEseUsername(customerDB)) ReparationscalendarApplication.log.warn("usuario repetido");
+            if (bindingResult.hasErrors()) ReparationscalendarApplication.log.warn("ha fallado el registro");
+
             return "index";
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
